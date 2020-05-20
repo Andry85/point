@@ -1,0 +1,13 @@
+.navList {
+    margin: 0;
+    padding: 0;
+}
+.navList__item {
+    display: block;
+    border-top: 1px solid #ccc;
+    
+}
+.navList__item a {
+    padding: 10px 5px;
+    display: block;
+}
