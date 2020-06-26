@@ -9,7 +9,16 @@ const messagesReducer = (state = initialState, action) => {
       case 'ADD_MESSAGE':
         return Object.assign({}, state, {
           arrMessages: [...state.arrMessages, action.text]
-        })
+        }) 
+        break;  
+      case 'REMOVE_MESSAGE':
+        return Object.assign({}, state, {
+          arrMessages: [
+                        ...state.arrMessages.slice(0, action.index),
+                        ...state.arrMessages.slice(action.index + 1)
+                        ]
+        }) 
+        break;  
       default:
         return state
     }

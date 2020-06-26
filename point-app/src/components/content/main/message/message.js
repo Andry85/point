@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './message.css';
 
 import { addMessage } from '../../../../actions';
+import { removeMessage } from '../../../../actions';
 
 
 class MessagePresental extends Component {
@@ -17,6 +18,7 @@ class MessagePresental extends Component {
     }
 
     this.handChange = this.handChange.bind(this);
+    this.deleteTeMessage = this.deleteTeMessage.bind(this);
   }
 
   handChange(e) {
@@ -25,6 +27,8 @@ class MessagePresental extends Component {
     });
   }
 
+
+
   handleSend = (e) => {
     e.preventDefault();
     this.props.sendMessage(this.state.input);
@@ -32,8 +36,23 @@ class MessagePresental extends Component {
       input: ''
     });
   }
+
+  deleteTeMessage = (index) => {
+    this.props.deleteTeMessage(index);
+    console.log(index);
+  }
+
+
+
 	
   render() {
+
+    const listMessages = this.props.items.map((message, index) =>
+      <li key={index}>
+        {message}
+        <span onClick={(e) => this.deleteTeMessage(index)} className="delete-message">Delete</span>
+      </li>
+    );
 
 
    return (
@@ -44,8 +63,7 @@ class MessagePresental extends Component {
        <div>
          <button onClick={this.handleSend}>Post</button>
        </div>
-       <div>{this.props.items}</div>
-      
+       <ul className="listMessages">{listMessages}</ul>
      </div>
    );
   }
@@ -54,8 +72,9 @@ class MessagePresental extends Component {
 
 
 const mapStateToProps = (state) => {
+  let arr = state.messagesReducer.arrMessages;
   return {
-	  items: state.messagesReducer.blabla
+	  items: arr
   }
 }
 
@@ -63,6 +82,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     sendMessage: (text) => {
       dispatch(addMessage(text))
+    },
+    deleteTeMessage: (index) => {
+      dispatch(removeMessage(index))
     }
   }
 }
