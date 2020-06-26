@@ -1,0 +1,31 @@
+.calcWrap {
+
+}
+.calcWrapBox {
+    
+}
+.calcWrap .calcWrapBox {
+    border: 1px solid #ccc; 
+    padding: 25px;
+    border-radius: 15px;
+}
+.calcWrapBox__title {
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+}
+.calcWrapBox__form {
+    display: flex;
+    align-items: center;
+}
+.calcWrapBox__input {
+    border: 1px solid #ccc; 
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 5px 0 0;
+}
+.calcWrapBox__percent {
+    margin: 0 5px 0 0;
+}
+.calcWrapBox__btn {
+    cursor: pointer;
+}

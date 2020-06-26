@@ -8,6 +8,10 @@ import './main.css';
 
 import News from './news';
 import Weather from './weather';
+import Change from './change';
+import Calc from './calc';
+import Message from './message';
+
 
 class Main extends Component {
     render() {
@@ -17,8 +21,17 @@ class Main extends Component {
                     <Route exact path="/">
                         <News />
                     </Route>
-                    <Route path="/weather">
-                        <Weather/>
+                    <Route exact path="/weather">
+                        <Weather />
+                    </Route>
+                    <Route exact path="/change">
+                        <Change />
+                    </Route>
+                    <Route exact path="/calc">
+                        <Calc title="Percent of the number:" />
+                    </Route>
+                    <Route exact path="/message">
+                        <Message />
                     </Route>
                 </Switch>
             </div>
@@ -26,5 +39,4 @@ class Main extends Component {
     }
 }
 export default Main; 
-
 

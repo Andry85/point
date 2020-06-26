@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-import Comment from '../comment';
+import './change.css';
 
-import './news.css';
-
-class News extends Component {
+class Change extends Component {
 
     constructor(props) {
         super(props);
@@ -16,20 +14,21 @@ class News extends Component {
     }
 
     componentDidMount() {
-        fetch('https://gnews.io/api/v3/top-news?token=4bd85d8342eecb7c7a083aaae1b36583')
+        fetch('https://api.exchangeratesapi.io/latest?base=USD')
         .then(res => res.json())
         .then(
             (result) => {
             console.log(result);
             this.setState({
                 isLoaded: true,
-                items: result.articles
+                items: result
             },
             (error) => {
                 this.setState({
                   isLoaded: true,
                   error
                 });
+
               }
             );
         })
@@ -45,21 +44,18 @@ class News extends Component {
             return <div>Загрузка...</div>;
         } else {
             return (
-                <div>
-                    <ul className="newsArticle">
-                        {items.map((e, i) => (
-                            <li className="newsArticle__item" key={i}>
-                                <h2 className="newsArticle__titile"><a target="_blank" href={e.url}>{e.title}</a></h2> 
-                            </li>
-                    ))}
-                    </ul>
-                    <Comment/>
-                </div>
+                <ul className="currency">
+                    {Object.keys(items.rates).map((e, i) => (
+                        <li className="currency__item" key={i}>
+                            <h2 className="currency__titile">1 {items.base} = {items.rates[e]} {e}</h2> 
+                        </li>
+                ))}
+                </ul>
             );
         }
        
     }
 }
-export default News; 
+export default Change; 
 
 

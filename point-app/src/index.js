@@ -5,13 +5,20 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
-
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import combineReducers from './reducers';
 import App from './components/app/';
 
+const store = createStore(combineReducers);
+
+
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );

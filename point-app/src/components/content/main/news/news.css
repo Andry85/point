@@ -1,0 +1,22 @@
+.newsArticle {
+    margin: 0;
+    padding: 0;
+}
+.newsArticle__item {
+   list-style: none;
+   margin-bottom: 45px;
+}
+.newsArticle__item:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+.newsArticle__titile {
+    font-size: 1.2rem;
+}
+.newsArticle__pic {
+    width: 200px;
+    float: left;
+    margin: 0 15px 0 0;
+    border-radius: 10px;
+}

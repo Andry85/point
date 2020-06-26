@@ -8,16 +8,19 @@ class Nav extends Component {
         return (
             <ul className="navList">
                 <li className="navList__item">
-                    <Link to="/">Новини</Link>
+                    <Link to="/">News</Link>
                 </li>
                 <li className="navList__item">
-                    <Link to="/weather">Погода</Link>
+                    <Link to="/weather">Weather</Link>
                 </li>
                 <li className="navList__item">
-                    <Link to="/change">Курси валют</Link>
+                    <Link to="/change">Exchange rates</Link>
                 </li>
                 <li className="navList__item">
-                    <Link to="/calc">Калькулятор</Link>
+                    <Link to="/calc">Calculator</Link>
+                </li>
+                <li className="navList__item">
+                    <Link to="/message">New message</Link>
                 </li>
             </ul>
         );
