@@ -11,6 +11,8 @@ import Weather from './weather';
 import Change from './change';
 import Calc from './calc';
 import Message from './message';
+import Thunk from './thunk';
+
 
 
 class Main extends Component {
@@ -32,6 +34,9 @@ class Main extends Component {
                     </Route>
                     <Route exact path="/message">
                         <Message />
+                    </Route>
+                    <Route exact path="/thunk">
+                        <Thunk />
                     </Route>
                 </Switch>
             </div>

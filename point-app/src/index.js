@@ -6,11 +6,12 @@ import {
   Route
 } from "react-router-dom";
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
 import combineReducers from './reducers';
 import App from './components/app/';
 
-const store = createStore(combineReducers);
+const store = createStore(combineReducers,applyMiddleware(thunk));
 
 
 

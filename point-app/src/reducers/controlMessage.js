@@ -18,6 +18,15 @@ const messagesReducer = (state = initialState, action) => {
                         ...state.arrMessages.slice(action.index + 1)
                         ]
         }) 
+        break; 
+      case 'EDIT_MESSAGE':
+        return Object.assign({}, state, {
+          arrMessages: [
+            ...state.arrMessages.slice(0, action.index),
+            action.text,
+            ...state.arrMessages.slice(action.index + 1)
+            ]
+        }) 
         break;  
       default:
         return state

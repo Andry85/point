@@ -6,6 +6,10 @@ import './message.css';
 
 import { addMessage } from '../../../../actions';
 import { removeMessage } from '../../../../actions';
+import { editOldMessage } from '../../../../actions';
+
+
+
 
 
 class MessagePresental extends Component {
@@ -13,12 +17,18 @@ class MessagePresental extends Component {
   constructor(props) {
     super(props)
 
+    this.editForm = React.createRef();
+
     this.state = {
-      input: ''
+      input: '',
+      visibilityEditForm: false,
+      editAreaText: '',
+      indexEdited: null
     }
 
     this.handChange = this.handChange.bind(this);
-    this.deleteTeMessage = this.deleteTeMessage.bind(this);
+    this.handChangeEditArea = this.handChangeEditArea.bind(this);
+    this.handleEditSave = this.handleEditSave.bind(this);
   }
 
   handChange(e) {
@@ -26,8 +36,6 @@ class MessagePresental extends Component {
       input: e.target.value
     });
   }
-
-
 
   handleSend = (e) => {
     e.preventDefault();
@@ -42,6 +50,36 @@ class MessagePresental extends Component {
     console.log(index);
   }
 
+  editMessage = (index, message) => {
+
+    console.log(index);
+    this.setState(state => ({
+      input: '',
+      visibilityEditForm: true,
+      editAreaText: message,
+      indexEdited: index
+    }));
+
+   this.editForm.current.focus();
+  }
+
+  handChangeEditArea(e) {
+    this.setState({
+      editAreaText: e.target.value
+    });
+  }
+
+
+  handleEditSave(e) {
+    e.preventDefault();
+    this.props.sendEditedMessage(this.state.editAreaText, this.state.indexEdited);
+    this.setState({
+      editAreaText: '',
+      visibilityEditForm: false,
+    });
+  }
+
+
 
 
 	
@@ -49,7 +87,9 @@ class MessagePresental extends Component {
 
     const listMessages = this.props.items.map((message, index) =>
       <li key={index}>
-        {message}
+        <i>{message}</i>
+
+        <span onClick={(e) => this.editMessage(index, message)} className="edit-message">Edit</span>
         <span onClick={(e) => this.deleteTeMessage(index)} className="delete-message">Delete</span>
       </li>
     );
@@ -59,11 +99,25 @@ class MessagePresental extends Component {
      
 
      <div className="comment">
-       <textarea onChange={this.handChange} value={this.state.input} placeholder="What's on your mind?"/>
+       <textarea   
+                  onChange={this.handChange} 
+                  value={this.state.input} 
+                  placeholder="What's on your mind?"/>
        <div>
          <button onClick={this.handleSend}>Post</button>
        </div>
        <ul className="listMessages">{listMessages}</ul>
+       <div className={
+          this.state.visibilityEditForm ? 'edit-form visible' : 'edit-form'
+        }>
+          <textarea 
+          ref={this.editForm}  
+          value={this.state.editAreaText}  
+          placeholder="Change Text"
+          onChange={this.handChangeEditArea}
+           />
+          <button onClick={this.handleEditSave}>Save</button>
+       </div>
      </div>
    );
   }
@@ -85,7 +139,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteTeMessage: (index) => {
       dispatch(removeMessage(index))
-    }
+    },
+    sendEditedMessage: (text, index) => {
+      dispatch(editOldMessage(text, index))
+    },
   }
 }
 
