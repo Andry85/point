@@ -12,6 +12,7 @@ import Change from './change';
 import Calc from './calc';
 import Message from './message';
 import Thunk from './thunk';
+import Hooks from './hooks';
 
 
 
@@ -37,6 +38,9 @@ class Main extends Component {
                     </Route>
                     <Route exact path="/thunk">
                         <Thunk />
+                    </Route>
+                    <Route exact path="/hooks">
+                        <Hooks />
                     </Route>
                 </Switch>
             </div>

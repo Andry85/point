@@ -25,6 +25,9 @@ class Nav extends Component {
                 <li className="navList__item">
                     <Link to="/thunk">Fetch Thunk</Link>
                 </li>
+                <li className="navList__item">
+                    <Link to="/hooks">Hooks</Link>
+                </li>
             </ul>
         );
     }
